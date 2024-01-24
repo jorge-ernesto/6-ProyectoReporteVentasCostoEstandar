@@ -89,6 +89,7 @@ define(['./Lib.Basic', './Lib.Helper', 'N'],
                 // Adicional
                 let orden_venta_id_interno = node.getValue(33);
                 let orden_venta_nombre = node.getValue(34);
+                let customer_report_p_and_l = node.getValue(35);
 
                 resultTransaction.push({
                     tipo_doc: { id: tipo_doc, nombre: tipo_doc_nombre },
@@ -129,6 +130,7 @@ define(['./Lib.Basic', './Lib.Helper', 'N'],
                     sector: sector,
                     orden_venta_id_interno: orden_venta_id_interno,
                     orden_venta_nombre: orden_venta_nombre,
+                    customer_report_p_and_l: customer_report_p_and_l,
                 })
             });
 
@@ -183,6 +185,7 @@ define(['./Lib.Basic', './Lib.Helper', 'N'],
                 // Adicional
                 let periodo_contable_id_interno = node.getValue(11);
                 let periodo_contable_nombre = node.getValue(12);
+                let customer_report_p_and_l = node.getValue(13);
 
                 resultTransaction.push({
                     ruc_dni: ruc_dni,
@@ -199,6 +202,7 @@ define(['./Lib.Basic', './Lib.Helper', 'N'],
                     sector: sector,
                     periodo_contable_id_interno: periodo_contable_id_interno,
                     periodo_contable_nombre: periodo_contable_nombre,
+                    customer_report_p_and_l: customer_report_p_and_l,
                 })
             });
 
@@ -338,6 +342,11 @@ define(['./Lib.Basic', './Lib.Helper', 'N'],
                     join: "createdFrom",
                     label: "Creado desde : Número de documento"
                 });
+                transactionQuery.pushColumn({
+                    name: "custentity_customer_report_p_and_l",
+                    join: "customer",
+                    label: "Customer Report P and L"
+                });
             } else if (report == 'reporte_bonificacion_descuento') {
                 transactionQuery.pushColumn({
                     name: "custentity_bio_num_doc",
@@ -390,6 +399,11 @@ define(['./Lib.Basic', './Lib.Helper', 'N'],
                     join: "accountingPeriod",
                     label: "Período contable : Nombre"
                 });
+                transactionQuery.pushColumn({
+                    name: "custentity_customer_report_p_and_l",
+                    join: "customer",
+                    label: "Customer Report P and L"
+                });
             }
         }
 
@@ -435,10 +449,9 @@ define(['./Lib.Basic', './Lib.Helper', 'N'],
                     "AND",
                     ["currency", "anyof", "@ALL@"],
                     "AND",
-                    [
-                        [["item.custitem3", "anyof", "1", "3", "2", "9", "11", "10", "4", "37"], "OR",
-                        [["item.custitem3", "anyof", "38"], "AND", ["item", "anyof", "8885", "8890", "8895", "8935", "17242"]]]
-                    ],
+                    ["item.custitem3", "anyof", "1", "3", "4", "2", "37", "9", "11", "10", "38"],
+                    "AND",
+                    [["account.number", "startswith", "70"], "OR", ["account.number", "startswith", "74"]],
                     "AND",
                     ["item", "noneof", "12727", "4511"]
                 ];

@@ -40,6 +40,13 @@ define(['./Lib.Helper', 'N'],
                 // Agrupar Revaluacion de Inventario
                 let dataRevaluacionAgrupada = agruparRevaluacion(dataRevaluacion);
 
+                // Validacion en consola del navegador
+                // let prueba = {};
+                // prueba['a']; // No genera error
+                // prueba['a']['b']; // Generar error
+                // prueba[1]; // No generar error
+                // prueba[1][2]; // Generar error
+
                 // Recorremos ventas para asignar revaluaciones
                 dataVentas.forEach((value_ven, key_ven) => {
 
