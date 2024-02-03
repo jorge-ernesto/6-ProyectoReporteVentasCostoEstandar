@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VentaCostoEstandar_Detallada</title>
+</head>
+
+<body>
+
+    <!-- ESTO ES LO QUE VE EL USUARIO -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.3/components/icon.min.css" />
+
+    <!-- DataTables -->
+    <!-- https://datatables.net/download/ -->
+    <link
+        href="https://cdn.datatables.net/v/dt/jq-3.7.0/jszip-3.10.1/dt-1.13.6/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/datatables.min.css"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script
+        src="https://cdn.datatables.net/v/dt/jq-3.7.0/jszip-3.10.1/dt-1.13.6/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/datatables.min.js"></script>
+
+    <div class="bm-viewer" id="myTableContainer" style="display: none;">
+        <div class="bm-viewer-action">
+            <i class="big file green excel icon" onclick="exportToExcel()" style="margin-left: 10px;"></i>
+        </div>
+        <div class="bm-container">
+            <div class="bm-container-body">
+                <table class="bm-report-table" id="myTable">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span>NRO DOC</span>
+                            </th>
+                            <th>
+                                <span>TIPO DOC</span>
+                            </th>
+                            <th>
+                                <span>RUC_DNI</span>
+                            </th>
+                            <th>
+                                <span>NOMBRE DEL CLIENTE</span>
+                            </th>
+                            <th>
+                                <span>FECHA</span>
+                            </th>
+                            <th>
+                                <span>LINEA</span>
+                            </th>
+                            <th>
+                                <span>CÓDIGO</span>
+                            </th>
+                            <th>
+                                <span>DESCRIPCIÓN</span>
+                            </th>
+                            <th>
+                                <span>PRESENTACIÓN</span>
+                            </th>
+                            <th>
+                                <span>CANTIDAD VENDIDA</span>
+                            </th>
+                            <th>
+                                <span>PRECIO UNITARIO DE VENTA</span>
+                            </th>
+                            <th>
+                                <span>COSTO UNITARIO ESTANDAR</span>
+                            </th>
+                            <th>
+                                <span>COSTO TOTAL ESTANDAR</span>
+                            </th>
+                            <th>
+                                <span>PRECIO DE VENTA</span>
+                            </th>
+                            <th>
+                                <span>DESCUENTO 1</span>
+                            </th>
+                            <th>
+                                <span>DESCUENTO 2</span>
+                            </th>
+                            <th>
+                                <span>PRECIO VENTA NETO S/</span>
+                            </th>
+                            <th>
+                                <span>PRECIO VENTA NETO $</span>
+                            </th>
+                            <th>
+                                <span>MONEDA</span>
+                            </th>
+                            <th>
+                                <span>TIPO DE CAMBIO</span>
+                            </th>
+                            <th>
+                                <span>DOC. REFRENCIA</span>
+                            </th>
+                            <th>
+                                <span>CONDICIÓN PAGO</span>
+                            </th>
+                            <th>
+                                <span>VENDEDOR</span>
+                            </th>
+                            <th>
+                                <span>DEPARTAMENTO</span>
+                            </th>
+                            <th>
+                                <span>UNIDAD DE NEGOCIO</span>
+                            </th>
+                            <th>
+                                <span>ZONA/</span>
+                            </th>
+                            <th>
+                                <span>REGION</span>
+                            </th>
+                            <th>
+                                <span>TIPO DE IMPUESTO</span>
+                            </th>
+                            <th>
+                                <span>TIPO DE OPERACIÓN</span>
+                            </th>
+                            <th>
+                                <span>TIPO DE OPERACIÓN BIOMONT</span>
+                            </th>
+                            <th>
+                                <span>GUÍA DE REMISIÓN</span>
+                            </th>
+                            <th>
+                                <span>ALMACÉN</span>
+                            </th>
+                            <th>
+                                <span>AÑO</span>
+                            </th>
+                            <th>
+                                <span>MES</span>
+                            </th>
+                            <th>
+                                <span>SECTOR</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <#list context.transactions as transaction>
+                            <tr>
+                                <td>${transaction.nro_doc}</td>
+                                <td>${transaction.tipo_doc.nombre}</td>
+                                <td>${transaction.ruc_dni}</td>
+                                <td>${transaction.nombre_cliente}</td>
+                                <td>${transaction.fecha}</td>
+                                <td>${transaction.linea.nombre}</td>
+                                <td>${transaction.codigo}</td>
+                                <td>${transaction.descripcion}</td>
+                                <td>${transaction.present.nombre}</td>
+                                <td>${transaction.cantidad}</td>
+                                <td>${transaction.precio}</td>
+                                <td>${transaction.costo_unitario_estandar}</td>
+                                <td>${transaction.costo_total_estandar}</td>
+                                <td>${transaction.importe_bruto}</td>
+                                <td>${transaction.d1}</td>
+                                <td>${transaction.d2}</td>
+                                <td>${transaction.importe_neto}</td>
+                                <td>${transaction.importe_usd}</td>
+                                <td>${transaction.moneda.nombre}</td>
+                                <td>${transaction.tipo_cambio}</td>
+                                <td>${transaction.doc_referencia}</td>
+                                <td>${transaction.condicion_pago.nombre}</td>
+                                <td>${transaction.vendedor}</td>
+                                <td>${transaction.departamento.nombre}</td>
+                                <td>${transaction.division.nombre}</td>
+                                <td>${transaction.zona.nombre}</td>
+                                <td>${transaction.region.nombre}</td>
+                                <td>${transaction.tipo_impuesto.nombre}</td>
+                                <td>${transaction.tipo_operacion.nombre}</td>
+                                <td>${transaction.tipo_operacion_biomont.nombre}</td>
+                                <td>${transaction.guias_remision}</td>
+                                <td>${transaction.almacen.nombre}</td>
+                                <td>${transaction.anio}</td>
+                                <td>${transaction.mes}</td>
+                                <td>${transaction.sector}</td>
+                            </tr>
+                        </#list>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- CERRAR ESTO ES LO QUE VE EL USUARIO -->
+
+    <script>
+        let table = new DataTable('#myTable', {
+            "processing": true,
+            "serverSide": false,
+            language: {
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
+                "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix": "",
+                "sSearch": "Buscar:",
+                "sUrl": "",
+                "sInfoThousands": ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast": "Último",
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "oAria": {
+                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                }
+            },
+            "lengthMenu": [[5, 10, 25, 50, 500, 1000, -1], [5, 10, 25, 50, 500, 1000, "All"]],
+            "pageLength": 50,
+            dom: 'Bfrtip', // Blfrtip
+            buttons: [
+                'pageLength', 'excel'
+            ]
+        });
+
+        // Una vez que DataTables esté listo, muestra la tabla
+        if (table) {
+            $('button.buttons-excel').hide(); // Ocultar boton Excel de DataTables
+            $('#myTableContainer').show(); // Muestra la tabla
+
+            function exportToExcel() {
+                $('button.buttons-excel').click();
+            }
+        }
+    </script>
+
+</body>
+
+</html>
