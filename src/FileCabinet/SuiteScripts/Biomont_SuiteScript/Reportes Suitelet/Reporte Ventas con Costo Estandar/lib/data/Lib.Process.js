@@ -17,7 +17,7 @@ define(['./Lib.Helper', 'N'],
                 let location = element.location;
                 let trandate_number = element.trandate_number;
 
-                // Agrupar revaluaciones por articulo, almacen y fecha
+                // Agrupar data - revaluaciones por articulo, almacen y fecha
                 dataRevaluacionAgrupada[item] = dataRevaluacionAgrupada[item] || {};
                 dataRevaluacionAgrupada[item][location] = dataRevaluacionAgrupada[item][location] || {};
                 dataRevaluacionAgrupada[item][location][trandate_number] = dataRevaluacionAgrupada[item][location][trandate_number] || {};
