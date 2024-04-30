@@ -7,8 +7,6 @@ define(['N'],
 
         const { runtime, email, file } = N;
 
-        /******************/
-
         function error_log(title, data) {
             throw `${title} -- ${JSON.stringify(data)}`;
         }
